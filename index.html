@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Link Preview Generator</title>
+</head>
+
+<body>
+
+<h2>Create Facebook Link Preview</h2>
+
+<input id="title" placeholder="Title"><br><br>
+<input id="desc" placeholder="Description"><br><br>
+<input id="image" placeholder="Image URL"><br><br>
+<input id="target" placeholder="Destination URL"><br><br>
+
+<button onclick="generate()">Generate Link</button>
+
+<p id="result"></p>
+
+<script>
+
+function generate(){
+
+let title = document.getElementById("title").value
+let desc = document.getElementById("desc").value
+let image = document.getElementById("image").value
+let target = document.getElementById("target").value
+
+let data = btoa(JSON.stringify({
+title:title,
+desc:desc,
+image:image,
+target:target
+}))
+
+let link = location.origin + "/preview.html?data=" + data
+
+document.getElementById("result").innerHTML = link
+
+}
+
+</script>
+
+</body>
+</html>
