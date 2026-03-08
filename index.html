@@ -21,22 +21,27 @@
 
 function generate(){
 
-let title = document.getElementById("title").value
-let desc = document.getElementById("desc").value
-let image = document.getElementById("image").value
-let target = document.getElementById("target").value
+let title = document.getElementById("title").value;
+let desc = document.getElementById("desc").value;
+let image = document.getElementById("image").value;
+let target = document.getElementById("target").value;
+
+if(!title || !target){
+document.getElementById("result").innerHTML = "กรุณากรอก Title และ Destination URL";
+return;
+}
 
 let data = btoa(JSON.stringify({
 title:title,
 desc:desc,
 image:image,
 target:target
-}))
+}));
 
-let link = location.origin + "/my-website/preview.html?data=" + data
+let link = location.origin + "/my-website/preview.html?data=" + data;
 
 document.getElementById("result").innerHTML =
-'<a href="'+link+'" target="_blank">'+link+'</a>'
+'<br>Generated Link:<br><a href="'+link+'" target="_blank">'+link+'</a>';
 
 }
 
