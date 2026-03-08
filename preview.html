@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+
+let params = new URLSearchParams(location.search)
+let data = JSON.parse(atob(params.get("data")))
+
+document.write(`
+<meta property="og:title" content="${data.title}">
+<meta property="og:description" content="${data.desc}">
+<meta property="og:image" content="${data.image}">
+<meta property="og:type" content="website">
+`)
+
+setTimeout(()=>{
+location.href = data.target
+},1000)
+
+</script>
+
+</head>
+
+<body>
+
+Redirecting...
+
+</body>
+</html>
