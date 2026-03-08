@@ -33,9 +33,10 @@ image:image,
 target:target
 }))
 
-let link = location.origin + "/preview.html?data=" + data
+let link = location.origin + "/my-website/preview.html?data=" + data
 
-document.getElementById("result").innerHTML = link
+document.getElementById("result").innerHTML =
+'<a href="'+link+'" target="_blank">'+link+'</a>'
 
 }
 
