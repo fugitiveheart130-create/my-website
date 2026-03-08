@@ -2,29 +2,57 @@
 <html>
 <head>
 
-<script>
+<title>Preview</title>
 
-let params = new URLSearchParams(location.search)
-let data = JSON.parse(atob(params.get("data")))
-
-document.write(`
-<meta property="og:title" content="${data.title}">
-<meta property="og:description" content="${data.desc}">
-<meta property="og:image" content="${data.image}">
+<meta property="og:title" id="ogtitle">
+<meta property="og:description" id="ogdesc">
+<meta property="og:image" id="ogimage">
 <meta property="og:type" content="website">
-`)
-
-setTimeout(()=>{
-location.href = data.target
-},1000)
-
-</script>
 
 </head>
 
 <body>
 
-Redirecting...
+<h2>Preview</h2>
+
+<div id="card" style="
+width:400px;
+border:1px solid #ccc;
+padding:10px;
+font-family:sans-serif;
+">
+
+<img id="img" style="width:100%"><br><br>
+
+<h3 id="title"></h3>
+
+<p id="desc"></p>
+
+<a id="link" target="_blank">Open Link</a>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(location.search)
+const data = params.get("data")
+
+if(data){
+
+const obj = JSON.parse(atob(data))
+
+document.getElementById("title").innerText = obj.title
+document.getElementById("desc").innerText = obj.desc
+document.getElementById("img").src = obj.image
+document.getElementById("link").href = obj.target
+
+document.getElementById("ogtitle").setAttribute("content",obj.title)
+document.getElementById("ogdesc").setAttribute("content",obj.desc)
+document.getElementById("ogimage").setAttribute("content",obj.image)
+
+}
+
+</script>
 
 </body>
 </html>
